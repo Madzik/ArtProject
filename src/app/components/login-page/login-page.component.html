@@ -1,0 +1,33 @@
+<div class="container">
+  <div [hidden]="loggedIn">
+    <mat-grid-list cols="3">
+
+    <mat-grid-tile colspan="1"> Please enter your login and password</mat-grid-tile>
+    
+    <mat-grid-tile colspan="1">
+    <form novalidate (ngSubmit)="onSubmit(loginGroup)" [formGroup]="loginGroup" >
+
+        <label>Login</label>
+          <mat-form-field>
+          <input matInput placeholder="Your login" class="form-control" formControlName="login">
+          <mat-error *ngIf="loginGroup.get('login').hasError('required') && loginGroup.get('login').touched">Please enter your login</mat-error>
+          </mat-form-field>
+          <br>
+        <label>Password</label> 
+        
+        <mat-form-field>
+        <input matInput placeholder="Your Password" class="form-control" formControlName ="password">
+          <mat-error *ngIf="loginGroup.get('password').hasError('required') && loginGroup.get('password').touched">Please enter your password</mat-error>
+        </mat-form-field>
+        <br>
+
+            <button mat-stroked-button type="submit" [disabled]="loginGroup.invalid" >Login</button>
+    </form>
+    </mat-grid-tile>
+
+    </mat-grid-list>
+    </div>
+    <div [hidden]= "!loggedIn">
+    <h1>You have logged in! </h1>
+    </div>
+</div>
