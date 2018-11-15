@@ -1,0 +1,151 @@
+<div class="container">
+  <div [hidden]="itemAdded">
+
+      
+
+
+    <form novalidate (ngSubmit)="onSubmit(adItemGroup)" [formGroup]="addItemGroup">
+
+      <mat-grid-list cols="5" rowHeight="70px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <label class="top-label">ADD NEW ITEM</label>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="5" rowHeight="50px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <label>Item Name</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field floatLabel="never">
+          <input matInput id="name" type="text" [(ngModel)]="name" placeholder="Oil painting" 
+          class="form-control" formControlName="name">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="5" rowHeight="50px" >
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <label>Author's Firstname</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field floatLabel="never">
+          <input matInput id="authorName" type="text" [(ngModel)]="authorName" placeholder="John" 
+          class="form-control" formControlName="authorName">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      </mat-grid-list>
+
+      <mat-grid-list cols="5" rowHeight="50px"> 
+        <mat-grid-tile [colspan]="1"> 
+          <label>Author's Surname</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field floatLabel="never">
+          <input matInput id="authorSurname" type="text" [(ngModel)]="authorSurname" placeholder="Murray" 
+          class="form-control" formControlName="authorSurname">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+ 
+      <mat-grid-list cols="5" rowHeight="50px"> 
+        <mat-grid-tile [colspan]="1"> 
+          <label>Category</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field floatLabel="never">
+          <mat-select id="category" [(ngModel)]="category" placeholder="Select" class="form-control" 
+          formControlName="category">
+          <mat-option *ngFor="let cat of categories" [value]="cat">{{cat}}</mat-option>
+          <!--
+            <mat-option value="painting">Painting</mat-option>
+            <mat-option value="drawing">Drawing</mat-option>
+            <mat-option value="picture">Picture</mat-option>
+            <mat-option value="poster">Poster</mat-option>
+          -->
+          </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="5" rowHeight="50px"> 
+        <mat-grid-tile [colspan]="1"> 
+          <label>Description</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="2"> 
+          <mat-form-field floatLabel="never">
+          <textarea matInput rows="3" cols="100" maxLength="200" id="description" type="text" [(ngModel)]="description" placeholder="Description up to 200 letters" 
+          class="form-control" formControlName="description"> </textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="5" rowHeight="50px"> 
+        <mat-grid-tile [colspan]="1"> 
+          <label>Author's Price</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+          <mat-form-field floatLabel="never">
+          <input matInput id="inStockPrice" type="number" step="0.01" [(ngModel)]="inStockPrice" placeholder="35.00" 
+          class="form-control" formControlName="inStockPrice">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-tile [colspan]="1"> 
+        <label>Our Price</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+        <mat-form-field floatLabel="never">
+        <input matInput id="ourPrice" type="number" step="0.01" [(ngModel)]="ourPrice" placeholder="50.00" 
+        class="form-control" formControlName="ourPrice">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-tile [colspan]="1"> 
+        <label>Weight</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field floatLabel="never">
+        <input matInput id="weight" type="number" step="0.01" [(ngModel)]="weight" placeholder="0.90" 
+        class="form-control" formControlName="weight">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-tile [colspan]="1"> 
+        <label>Stock Number</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field floatLabel="never">
+        <input matInput id="inStockNumber" type="number" step="0" [(ngModel)]="inStockNumber" placeholder="110" 
+        class="form-control" formControlName="inStockNumber">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  <mat-grid-list cols="5" rowHeight="70px"> 
+    <mat-grid-tile [colspan]="1">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"> 
+      <button mat-stroked-button type="submit" [disabled]="addItemGroup.invalid">Add Item</button>
+      <button mat-stroked-button type="submit" [disabled]="addItemGroup.valid" routerLink="/">Cancel</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  </form>
+  
+  
+  </div>
+  <div [hidden]="!itemAdded">
+    <h3>Item added successfylly!</h3>
+  </div>
+
+</div>

@@ -1,8 +1,9 @@
 mat-toolbar {
 	background-color: #cc9900;
-	font-family:Verdana;
-	margin: 0;
-	padding: 10px;
+	font-family: Calibri, Verdana, sans-serif;
+	font-size: 20px;
+	margin: 0px;
+	padding: 20px;
 	color: white;
 }
 .fill-remaining-space {
@@ -10,4 +11,8 @@ mat-toolbar {
 }
 .login {
 	float:right;
+}
+.mat-button-wrapper {
+	font-family: Calibri, Verdana, sans-serif;
+	font-size: 25px;
 }

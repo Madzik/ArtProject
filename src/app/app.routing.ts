@@ -2,6 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { UserPortalComponent } from './components/user-portal/user-portal.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 const appRoutes : Routes = [
     {
@@ -16,6 +17,10 @@ const appRoutes : Routes = [
     {
         path : 'user',
         component: UserPortalComponent,
+    },
+    {
+        path : 'add-item',
+        component: AddItemComponent,
     }
 ];
 export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);

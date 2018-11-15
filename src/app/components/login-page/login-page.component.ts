@@ -14,7 +14,10 @@ export class LoginPageComponent implements OnInit {
   private credentials : { 'login': '', 'password': ''};
   private loggedIn : boolean;
 
-  constructor ( private fb: FormBuilder, private loginService : LoginService, private router : Router){
+  constructor ( 
+    private fb: FormBuilder, 
+    private loginService : LoginService, 
+    private router : Router){
     this.loginGroup = this.fb.group ({
       'login' : new FormControl('', Validators.required),
       'password' : new FormControl ('', Validators.required)
@@ -24,14 +27,13 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     // this.loginService.checkSession().subscribe (
     //   res => {
-    //     console.log("login page " +res.toString);
     //     this.loggedIn = true;
     //   },
     //   error => {
-    //     console.log("error " + error.toString);
     //     this.loggedIn = false;
     //   }
     // );
+    this.loggedIn = this.loginService.checkLoginStatus();
  }
   get login() {
     return this.loginGroup.get('login');
@@ -48,11 +50,11 @@ export class LoginPageComponent implements OnInit {
       res => {
         console.log(res.token);
         localStorage.setItem("xAuthToken", res.token );
-        //this.loggedIn = true;
+        this.loggedIn = true;
         const credentials = btoa(inputValue.login + '' + inputValue.password);
         localStorage.setItem('credentials', credentials);
-        // finish that localStorage.setItem('loggedIn', true)
-        this.router.navigate(['/user']);
+       // this.router.navigate(['/user']);
+        location.reload();
       },
       error => {
         console.log(error);

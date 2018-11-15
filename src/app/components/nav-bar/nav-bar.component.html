@@ -1,9 +1,9 @@
 <mat-toolbar>
-  <h4>ADMIN PORTAL</h4>
+  <h5>ADMIN PORTAL</h5>
   <span class="fill-remaining-space"></span>
-  <span *ngIf="loggedIn"><a mat-button>View stock</a></span>
-  <span [hidden]="!loggedIn"><a mat-button>Add item</a></span>
-  <span [hidden]="!loggedIn" (click)="logout()"><a mat-button>Logout</a></span>
+  <span [hidden]="!loggedIn" ><a mat-button>View stock</a></span>
+  <span [hidden]="!loggedIn" ><a mat-button routerLink="/add-item">Add item</a></span>
+  <span [hidden]="!loggedIn" (click)="logout()" (unload)="checkSession()"><a mat-button>Logout</a></span>
 </mat-toolbar>
 
 

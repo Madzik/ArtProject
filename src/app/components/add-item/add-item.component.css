@@ -1,0 +1,41 @@
+form {
+    font-family: Calibri, Verdana, Helvetica, sans-serif;
+    margin-left: 50px;
+}
+
+.top-label {
+    font-size: 20px;
+}
+.mat-form-field {
+    width: 100%;
+}
+button.mat-stroked-button {
+    margin: 15px;
+}
+.mat-input-element {
+    caret-color: gray;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: transparent 
+}
+
+::ng-deep .mat-form-field-ripple {
+    background-color: #cc9900;
+}
+::ng-deep .mat-form-field-label {
+    color: gray;
+}
+
+::ng-deep label.mat-input-placeholder-wrapper {
+    color:  #cc9900; 
+}
+::ng-deep mat-grid-tile.mat-grid-tile .mat-figure {
+    justify-content: left; 
+}
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #cc9900;
+}
+/** 
+#673ab7
+*/

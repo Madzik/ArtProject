@@ -10,12 +10,14 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routing } from './app.routing';
 
 import { LoginService } from './services/login.service';
 import { UserPortalComponent } from './components/user-portal/user-portal.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { UserPortalComponent } from './components/user-portal/user-portal.compon
     AppComponent,
     NavBarComponent,
     LoginPageComponent,
-    UserPortalComponent
+    UserPortalComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { UserPortalComponent } from './components/user-portal/user-portal.compon
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule,
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
