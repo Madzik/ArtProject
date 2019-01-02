@@ -1,10 +1,7 @@
 <div class="container">
   <div [hidden]="itemAdded">
 
-      
-
-
-    <form novalidate (ngSubmit)="onSubmit(adItemGroup)" [formGroup]="addItemGroup">
+    <form novalidate (ngSubmit)="onSubmit(addItemGroup)" [formGroup]="addItemGroup">
 
       <mat-grid-list cols="5" rowHeight="70px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -14,50 +11,53 @@
         </mat-grid-tile>
       </mat-grid-list>
 
-      <mat-grid-list cols="5" rowHeight="50px">
+      <mat-grid-list cols="5" rowHeight="65px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <label>Item Name</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field floatLabel="never">
-          <input matInput id="name" type="text" [(ngModel)]="name" placeholder="Oil painting" 
+          <input matInput id="name" type="text" [(ngModel)]="item.name" placeholder="Oil painting" 
           class="form-control" formControlName="name">
+          <mat-error *ngIf="addItemGroup.get('name').hasError('required') && addItemGroup.get('name').touched">Please enter the name of item</mat-error>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
 
-      <mat-grid-list cols="5" rowHeight="50px" >
+      <mat-grid-list cols="5" rowHeight="65px" >
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <label>Author's Firstname</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field floatLabel="never">
-          <input matInput id="authorName" type="text" [(ngModel)]="authorName" placeholder="John" 
+          <input matInput id="authorName" type="text" [(ngModel)]="item.authorName" placeholder="John" 
           class="form-control" formControlName="authorName">
+          <mat-error *ngIf="addItemGroup.get('authorName').hasError('required') && addItemGroup.get('authorName').touched">Please enter author's name</mat-error>
         </mat-form-field>
       </mat-grid-tile>
 
       </mat-grid-list>
 
-      <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-list cols="5" rowHeight="65px"> 
         <mat-grid-tile [colspan]="1"> 
           <label>Author's Surname</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field floatLabel="never">
-          <input matInput id="authorSurname" type="text" [(ngModel)]="authorSurname" placeholder="Murray" 
+          <input matInput id="authorSurname" type="text" [(ngModel)]="item.authorSurname" placeholder="Murray" 
           class="form-control" formControlName="authorSurname">
+          <mat-error *ngIf="addItemGroup.get('authorSurname').hasError('required') && addItemGroup.get('authorSurname').touched">Please enter author's surname</mat-error>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
  
-      <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-list cols="5" rowHeight="65px"> 
         <mat-grid-tile [colspan]="1"> 
           <label>Category</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field floatLabel="never">
-          <mat-select id="category" [(ngModel)]="category" placeholder="Select" class="form-control" 
+          <mat-select id="category" [(ngModel)]="item.category" placeholder="Please select" class="form-control" 
           formControlName="category">
           <mat-option *ngFor="let cat of categories" [value]="cat">{{cat}}</mat-option>
           <!--
@@ -67,67 +67,105 @@
             <mat-option value="poster">Poster</mat-option>
           -->
           </mat-select>
+          <mat-error *ngIf="addItemGroup.get('category').hasError('required') && addItemGroup.get('category').touched">Please select category</mat-error>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
 
-      <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-list cols="5" rowHeight="65px"> 
         <mat-grid-tile [colspan]="1"> 
           <label>Description</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="2"> 
           <mat-form-field floatLabel="never">
-          <textarea matInput rows="3" cols="100" maxLength="200" id="description" type="text" [(ngModel)]="description" placeholder="Description up to 200 letters" 
-          class="form-control" formControlName="description"> </textarea>
+          <textarea matInput rows="3" cols="100" id="description" type="text" [(ngModel)]="item.description" placeholder="Description up to 200 letters" 
+          class="form-control" formControlName="description" [errorStateMatcher]="errorMatcher"> </textarea>
+          <mat-error *ngIf="addItemGroup.get('description').hasError('required')">Please enter description</mat-error>
+          <mat-error *ngIf="addItemGroup.get('description').hasError('maxlength') && !addItemGroup.get('description').hasError('required')">Max. length is 200 characters</mat-error>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
 
-      <mat-grid-list cols="5" rowHeight="50px"> 
+      <mat-grid-list cols="5" rowHeight="65px"> 
         <mat-grid-tile [colspan]="1"> 
           <label>Author's Price</label>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1"> 
           <mat-form-field floatLabel="never">
-          <input matInput id="inStockPrice" type="number" step="0.01" [(ngModel)]="inStockPrice" placeholder="35.00" 
-          class="form-control" formControlName="inStockPrice">
+          <input matInput id="inStockPrice" type="number" step="0.01" [(ngModel)]="item.inStockPrice" placeholder="35.00" 
+          class="form-control" formControlName="inStockPrice" [errorStateMatcher]="errorMatcher">
+          <mat-error *ngIf="addItemGroup.get('inStockPrice').hasError('required')">Please enter price</mat-error>
+          <mat-error *ngIf="addItemGroup.get('inStockPrice').hasError('min') && !addItemGroup.get('inStockPrice').hasError('required')">Price cannot be lower than €10</mat-error>
+          <mat-error *ngIf="addItemGroup.get('inStockPrice').hasError('max') && !addItemGroup.get('inStockPrice').hasError('required')">Price cannot be higher than €9999</mat-error>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
 
-    <mat-grid-list cols="5" rowHeight="50px"> 
+    <mat-grid-list cols="5" rowHeight="65px"> 
       <mat-grid-tile [colspan]="1"> 
         <label>Our Price</label>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="2" [rowspan]="1"> 
         <mat-form-field floatLabel="never">
-        <input matInput id="ourPrice" type="number" step="0.01" [(ngModel)]="ourPrice" placeholder="50.00" 
-        class="form-control" formControlName="ourPrice">
+        <input matInput id="ourPrice" type="number" step="0.01" [(ngModel)]="item.ourPrice" placeholder="50.00" 
+        class="form-control" formControlName="ourPrice" [errorStateMatcher]="errorMatcher">
+        <mat-error *ngIf="addItemGroup.get('ourPrice').hasError('required')">Please enter price</mat-error>
+        <mat-error *ngIf="addItemGroup.get('ourPrice').hasError('min') && !addItemGroup.get('ourPrice').hasError('required')">Price cannot be lower than €10</mat-error>
+        <mat-error *ngIf="addItemGroup.get('ourPrice').hasError('max') && !addItemGroup.get('ourPrice').hasError('required')">Price cannot be higher than €9999</mat-error>
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
 
-    <mat-grid-list cols="5" rowHeight="50px"> 
+    <mat-grid-list cols="5" rowHeight="65px"> 
       <mat-grid-tile [colspan]="1"> 
         <label>Weight</label>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="2" [rowspan]="1">
         <mat-form-field floatLabel="never">
-        <input matInput id="weight" type="number" step="0.01" [(ngModel)]="weight" placeholder="0.90" 
-        class="form-control" formControlName="weight">
+        <input matInput id="weight" type="number" step="0.01" [(ngModel)]="item.weight" placeholder="0.90" 
+        class="form-control" formControlName="weight" [errorStateMatcher]="errorMatcher">
+        <mat-error *ngIf="addItemGroup.get('weight').hasError('required')">Please enter product weight</mat-error>
+        <mat-error *ngIf="addItemGroup.get('weight').hasError('min') && !addItemGroup.get('weight').hasError('required')">Min. weight is 0.10 kg</mat-error>
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
 
-    <mat-grid-list cols="5" rowHeight="50px"> 
+    <mat-grid-list cols="5" rowHeight="65px"> 
       <mat-grid-tile [colspan]="1"> 
-        <label>Stock Number</label>
+        <label>Available</label>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="2" [rowspan]="1">
         <mat-form-field floatLabel="never">
-        <input matInput id="inStockNumber" type="number" step="0" [(ngModel)]="inStockNumber" placeholder="110" 
-        class="form-control" formControlName="inStockNumber">
+        <mat-select id="available" type="text" [(ngModel)]="item.available" placeholder="Select" 
+        class="form-control" formControlName="available">
+          <mat-option [value]="true">Yes</mat-option>
+          <mat-option [value]="false">No</mat-option>
+        </mat-select>
+        <mat-error *ngIf="addItemGroup.get('available').hasError('required') && addItemGroup.get('available').touched">Please select 'Yes' or 'No'</mat-error>
         </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="65px"> 
+      <mat-grid-tile [colspan]="1"> 
+        <label>Numbers in Stock</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field floatLabel="never">
+        <input matInput id="inStockNumber" type="number" [(ngModel)]="item.inStockNumber" placeholder="10" 
+        class="form-control" formControlName="inStockNumber" [errorStateMatcher]="errorMatcher">
+        <mat-error *ngIf="addItemGroup.get('inStockNumber').hasError('required')">Please enter number of items in stock</mat-error>
+        <mat-error *ngIf="addItemGroup.get('inStockNumber').hasError('min') && !addItemGroup.get('inStockNumber').hasError('required')">Min. number of items is 1</mat-error>
+      </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="70px"> 
+      <mat-grid-tile [colspan]="1">
+          <label>Images</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2"> 
+        <input id="image" type="file" name="image" (change)="imageService.onFileChange($event)">
       </mat-grid-tile>
     </mat-grid-list>
 

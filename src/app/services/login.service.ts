@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpRequest, HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs';
 
 export interface Token {
   token : string;
@@ -9,9 +8,6 @@ export interface Token {
 
 @Injectable()
 export class LoginService {
-
-  private loginStatus = new BehaviorSubject(true);
-  currentStatus = this.loginStatus.asObservable();
 
   constructor( private http: HttpClient ) { }
 
@@ -41,8 +37,10 @@ export class LoginService {
     let url = "http://localhost:8081/user/logout";
     let headers = new HttpHeaders ({
       'x-auth-token' : localStorage.getItem("xAuthToken")
-    })
+    });
     return this.http.post(url, ' ', { headers : headers});
+
+   // localStorage.removeItem("xAuthToken");
   }
 
   // changeLoginStatus (status : boolean) {

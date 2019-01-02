@@ -1,0 +1,44 @@
+
+<div class="container">
+	<div class="table-responsive">
+		<table id="itemsTable" class="table table-hover">
+			<thead>
+				<tr>
+					<th>
+						<input type="checkbox" (change)="updateSelected($event.target.checked)" />
+					</th>
+					<th>Item Name</th>
+                    <th>Author Name</th>
+                    <th>Author Surname</th>
+					<th>Category</th>
+					<th class="th-centre">Author's Price</th>
+					<th class="th-centre">Our Price</th>
+					<th class="th-centre">Available</th>
+					<th class="th-centre">Operation</th>
+				</tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let item of items">
+                <td>
+                    <input hidden="hidden" name="id" />
+                    <!--<input type="checkbox" [checked]="allChecked" (change)="updateRemoveItemList($event.target.checked, item)" /> -->
+                </td>
+                <td><a (click)="onSelect(item)" style="cursor:pointer">{{item.name}}</a></td>
+                <td>{{item.authorName}}</td>
+                <td>{{item.authorSurname}}</td>
+                <td>{{item.category}}</td>
+                <td class="td-centre">{{item.inStockPrice}}</td>
+                <td class="td-centre">{{item.ourPrice}}</td>
+                <td class="td-centre">{{item.available}}</td>
+                <td class="td-centre">
+                    <input hidden="hidden" name="id" />
+                    <button mat-stroked-button (click)="openDialog(item)" value="delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button mat-stroked-button class="mat-warn" id="deleteSelected" (click)="removeSelectedItems()">Delete Selected</button>
+</div>
+
+  

@@ -1,0 +1,44 @@
+table {
+    font-family: Calibri, Verdana, Helvetica, sans-serif;
+    width: 94%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #4a4a4d;
+    font-size: 14px;
+  }
+  th {
+    padding: 12px 12px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+  td {
+    padding: 8px 8px;
+    vertical-align: middle;
+  }
+  thead {
+    background: #cc9900;
+    color: #fff;
+  }
+  th:first-child {
+    text-align: left;
+  }
+  td {
+    border-bottom: 1px solid #cc9900;
+  }
+  tbody tr:hover { 
+    background-color: #EFF0F1;
+ }
+  .td-centre {
+    text-align: center;
+  }
+  .th-centre {
+    text-align: center;
+  }
+  #deleteSelected {
+    margin-left: 3%;
+    margin-top: 20px;
+    margin-top: 20px;
+  }

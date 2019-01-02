@@ -60,5 +60,5 @@ export class LoginPageComponent implements OnInit {
         console.log(error);
       }
     );
-  }    
+  }
 }

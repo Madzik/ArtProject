@@ -16,8 +16,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routing } from './app.routing';
 
 import { LoginService } from './services/login.service';
+import { AddItemService } from './services/add-item.service';
+import { UploadImageService } from './services/upload-image.service';
+import { GetItemListService } from './services/get-item-list.service';
+import { GetItemService } from './services/get-item.service';
 import { UserPortalComponent } from './components/user-portal/user-portal.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
+import { ViewItemsComponent } from './components/view-items/view-items.component';
+import { ViewItemComponent } from './components/view-item/view-item.component';
 
 
 @NgModule({
@@ -27,6 +33,8 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     LoginPageComponent,
     UserPortalComponent,
     AddItemComponent,
+    ViewItemsComponent,
+    ViewItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,10 @@ import { AddItemComponent } from './components/add-item/add-item.component';
   ],
   providers: [
     LoginService,
+    AddItemService,
+    UploadImageService,
+    GetItemListService,
+    GetItemService,
     HttpClientModule,
     HttpClient
   ],

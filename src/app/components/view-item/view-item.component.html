@@ -1,0 +1,151 @@
+<div class="container">
+  <div><a routerLink="/view-items"><i class="fa fa-arrow-circle-left"></i>Return to item list</a></div>
+
+      <mat-grid-list cols="5" rowHeight="70px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" >
+        <label class="top-label"><a (click)="onSelect(item)" style="cursor: pointer">EDIT ITEM</a></label>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list role="list" cols="5" rowHeight="50px">
+        
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          NAME:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem">
+          {{item.name}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          AUTHOR'S NAME:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem">
+          {{item.authorName}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          AUTHOR'S SURNAME:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem" >
+          {{item.authorSurname}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          CATEGORY:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem" >
+          {{item.category}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          AUTHORS PRICE:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem" >
+          {{item.inStockPrice}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          OUR PRICE:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem" >
+          {{item.ourPrice}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          WEIGHT:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem" >
+          {{item.weight}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          AVAILABLE:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1" role="listitem" >
+          {{item.available}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" role="listitem">
+          DESCRIPTION:
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="2" role="listitem" >
+          {{item.description}}
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      
+ <!--
+      
+
+      <mat-grid-list cols="5" rowHeight="65px"> 
+        <mat-grid-tile [colspan]="1"> 
+          <label>Description</label>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="2"> 
+          <mat-form-field floatLabel="never">
+          <textarea matInput rows="3" cols="100" id="description" type="text" [(ngModel)]="item.description" placeholder="Description up to 200 letters" 
+          class="form-control" formControlName="description" [errorStateMatcher]="errorMatcher"> </textarea>
+          <mat-error *ngIf="addItemGroup.get('description').hasError('required')">Please enter description</mat-error>
+          <mat-error *ngIf="addItemGroup.get('description').hasError('maxlength') && !addItemGroup.get('description').hasError('required')">Max. length is 200 characters</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+     
+
+    
+
+    
+
+    <mat-grid-list cols="5" rowHeight="65px"> 
+      <mat-grid-tile [colspan]="1"> 
+        <label>Available</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field floatLabel="never">
+        <mat-select id="available" type="text" [(ngModel)]="item.available" placeholder="Select" 
+        class="form-control" formControlName="available">
+          <mat-option [value]="true">Yes</mat-option>
+          <mat-option [value]="false">No</mat-option>
+        </mat-select>
+        <mat-error *ngIf="addItemGroup.get('available').hasError('required') && addItemGroup.get('available').touched">Please select 'Yes' or 'No'</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="65px"> 
+      <mat-grid-tile [colspan]="1"> 
+        <label>Numbers in Stock</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field floatLabel="never">
+        <input matInput id="inStockNumber" type="number" [(ngModel)]="item.inStockNumber" placeholder="10" 
+        class="form-control" formControlName="inStockNumber" [errorStateMatcher]="errorMatcher">
+        <mat-error *ngIf="addItemGroup.get('inStockNumber').hasError('required')">Please enter number of items in stock</mat-error>
+        <mat-error *ngIf="addItemGroup.get('inStockNumber').hasError('min') && !addItemGroup.get('inStockNumber').hasError('required')">Min. number of items is 1</mat-error>
+      </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="70px"> 
+      <mat-grid-tile [colspan]="1">
+          <label>Images</label>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2"> 
+        <input id="image" type="file" name="image" (change)="imageService.onFileChange($event)">
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  <mat-grid-list cols="5" rowHeight="70px"> 
+    <mat-grid-tile [colspan]="1">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"> 
+      <button mat-stroked-button type="submit" [disabled]="addItemGroup.invalid">Add Item</button>
+      <button mat-stroked-button type="submit" [disabled]="addItemGroup.valid" routerLink="/">Cancel</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+-->
+
+</div>
+ <!-- 
+  </div>
+  <div [hidden]="!itemAdded">
+    <h3>Item added successfylly!</h3>
+  </div>
+-->
+
+

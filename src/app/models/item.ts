@@ -9,7 +9,7 @@ export class Item {
     public inStockPrice : number;
     public ourPrice : number;
     public weight : number;
-    public available : boolean;
+    public isAvailable : boolean;
     public inStockNumber : number;
 
 }
