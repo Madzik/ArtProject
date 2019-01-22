@@ -1,1 +1,1 @@
-# ArtProject
+# ArtProject-frontend
