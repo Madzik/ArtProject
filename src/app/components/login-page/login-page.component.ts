@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
     //     this.loggedIn = false;
     //   }
     // );
-    this.loggedIn = this.loginService.checkLoginStatus();
+  this.loggedIn = this.loginService.checkLoginStatus();
  }
   get login() {
     return this.loginGroup.get('login');
@@ -53,7 +53,6 @@ export class LoginPageComponent implements OnInit {
         this.loggedIn = true;
         const credentials = btoa(inputValue.login + '' + inputValue.password);
         localStorage.setItem('credentials', credentials);
-       // this.router.navigate(['/user']);
         location.reload();
       },
       error => {

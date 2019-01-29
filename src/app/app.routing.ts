@@ -5,6 +5,7 @@ import { UserPortalComponent } from './components/user-portal/user-portal.compon
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { ViewItemsComponent } from './components/view-items/view-items.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 const appRoutes : Routes = [
     {
@@ -31,6 +32,10 @@ const appRoutes : Routes = [
     {
         path : 'view-item/:id',
         component: ViewItemComponent,
+    },
+    {
+        path : 'edit-item/:id',
+        component: EditItemComponent,
     }
 ];
 export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);

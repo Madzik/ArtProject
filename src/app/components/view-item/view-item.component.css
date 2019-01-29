@@ -1,9 +1,29 @@
-.container {
+table {
     font-family: Calibri, Verdana, Helvetica, sans-serif;
-    margin-left: 50px;
-    margin-top: 20px;
-}
-
-::ng-deep mat-grid-tile.mat-grid-tile .mat-figure {
+    width: 94%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #4a4a4d;
+    font-size: 14px;
+  }
+td {
+  padding: 8px 8px;
+  vertical-align: middle;
+  border-bottom: 1px solid #cc9900;
+  text-align: left;
+  }
+td.cat {
+  font-weight: bold;
+  }
+::ng-deep mat-grid-tile.mat-grid-tile#button-tile .mat-figure {
     justify-content: left; 
+    margin-left: 10%;
+}
+img{
+  width:100%;
+  max-width:400px;
 }

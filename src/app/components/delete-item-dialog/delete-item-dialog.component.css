@@ -1,0 +1,15 @@
+div {
+    font-family: Calibri, Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+}
+p {
+    font-size: 16px;
+    font-weight: bolder;
+    
+}
+button.mat-stroked-button {
+    margin: 15px;
+}
+mat-dialog-actions {
+    justify-content: center;
+}

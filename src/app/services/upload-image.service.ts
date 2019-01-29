@@ -52,6 +52,18 @@ export class UploadImageService {
         console.log(error);
       });
   }
+
+  modify (itemId : number) {
+    if(this.filesAdded.length > 0) {
+      this.makeFileRequest("http://localhost:8081/item/update/image?id=" + itemId, [], this.filesAdded).then(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      });
+    }
+  }
   // onUpload (itemId : number) {
   //   const uploadData = new FormData();
   //   uploadData.append('myFile', this.selectedFile, this.selectedFile.name);

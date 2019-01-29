@@ -12,7 +12,7 @@ import { AddItemComponent } from '../../components/add-item/add-item.component';
 export class NavBarComponent implements OnInit {
 
   private loggedIn : boolean;
-  //private loggedOut : boolean;
+  private loggedOut : boolean;
 
   constructor (
     private loginService : LoginService, 
@@ -42,7 +42,8 @@ export class NavBarComponent implements OnInit {
         console.log("logout error: "+ JSON.stringify(error));
       }
     );
-    this.router.navigate(['/']);
+    this.loggedIn = false;
+    location.reload();
   }
 
 }

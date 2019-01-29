@@ -31,6 +31,8 @@ export class ViewItemComponent implements OnInit {
         console.log(error);
       });
   }
-
-
+  goToEdit(item:Item) {
+    this.router.navigate(['/edit-item', item.id]).then(
+      s => location.reload());
+  }
 }

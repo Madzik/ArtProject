@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  <p>Are you sure you want to delete this item?</p>
+       
+      <div><b>Item:</b> {{data.item.name}}</div>
+      <div><b>Author:</b> {{data.item.authorName}} {{data.item.authorSurname}}</div>
+      <div><b>Category:</b> {{data.item.category}} </div>
+      <div><b>Author's Price:</b> {{data.item.inStockPrice}}</div>
+      <div><b>Our Price:</b> {{data.item.ourPrice}}</div>
+ 
+</div>
+<mat-dialog-actions>
+  <button mat-stroked-button type="submit" [mat-dialog-close]="false">No</button>
+  <button mat-stroked-button type="submit" [mat-dialog-close]="true">Yes</button>
+</mat-dialog-actions>

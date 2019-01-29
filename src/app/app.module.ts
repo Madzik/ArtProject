@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material';
 import { routing } from './app.routing';
 
 import { LoginService } from './services/login.service';
@@ -20,10 +21,14 @@ import { AddItemService } from './services/add-item.service';
 import { UploadImageService } from './services/upload-image.service';
 import { GetItemListService } from './services/get-item-list.service';
 import { GetItemService } from './services/get-item.service';
+import { EditItemService } from './services/edit-item.service';
+import { DeleteItemService } from './services/delete-item.service';
 import { UserPortalComponent } from './components/user-portal/user-portal.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { ViewItemsComponent } from './components/view-items/view-items.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { DeleteItemDialogComponent } from './components/delete-item-dialog/delete-item-dialog.component';
 
 
 @NgModule({
@@ -35,6 +40,8 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
     AddItemComponent,
     ViewItemsComponent,
     ViewItemComponent,
+    EditItemComponent,
+    DeleteItemDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,15 +55,21 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
     ReactiveFormsModule,
     routing,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [
     LoginService,
     AddItemService,
+    EditItemService,
     UploadImageService,
     GetItemListService,
     GetItemService,
+    DeleteItemService,
     HttpClientModule,
-    HttpClient
+    HttpClient,
+  ],
+  entryComponents: [
+    DeleteItemDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

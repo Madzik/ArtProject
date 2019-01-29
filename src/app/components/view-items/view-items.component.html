@@ -21,7 +21,7 @@
             <tr *ngFor = "let item of items">
                 <td>
                     <input hidden="hidden" name="id" />
-                    <!--<input type="checkbox" [checked]="allChecked" (change)="updateRemoveItemList($event.target.checked, item)" /> -->
+                    <input type="checkbox" [checked]="allChecked" (change)="updateRemovedItems($event.target.checked, item)" /> 
                 </td>
                 <td><a (click)="onSelect(item)" style="cursor:pointer">{{item.name}}</a></td>
                 <td>{{item.authorName}}</td>

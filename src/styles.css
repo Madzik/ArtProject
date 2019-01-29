@@ -2,5 +2,6 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
+    font-family: Calibri, Verdana, Helvetica, sans-serif;
     margin: 0px;
 }
